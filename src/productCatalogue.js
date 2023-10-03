@@ -76,4 +76,27 @@ export class Catalogue {
     return removedProduct;
   }
 
+
+
+  
+ /**
+  * The function "checkReorders" 
+  * checks the stock quantity of products and returns 
+  * a list of product
+  * IDs that need to be reordered.
+  * @returns an object with two properties: "type" and "productIds".
+  */
+  checkReorders() {
+    const result = { type: "Reorder", productIds: [] };
+    this.products.forEach( (p) => {
+      if (p.quantityInStock <= p.reorderLevel) {
+        result.productIds.push(p.id);
+      }
+    });
+    return result;
+  }
+
+
+
+  
 }
