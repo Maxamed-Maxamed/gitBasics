@@ -4,11 +4,32 @@ export class Catalogue {
     this.products = [];
   }
 
+  /**
+   * The function "findProductById" 
+   * searches for a product in an array of products based on its ID and
+   * returns the matching product.
+   * @param id - The `id` parameter is the 
+   * unique identifier of the product that you want to find.
+   * @returns the product object that matches the given id.
+   */
   findProductById(id) {
     const match = this.products.find((product) => id === product.id);
     return match;
   }
 
+  /**
+   * The addProduct function checks if a product with 
+   * the same id already exists in the products array,
+   * and if not, adds the product to the array and returns true, 
+   * otherwise returns false.
+   * @param product - The parameter "product" is an object that represents a product. 
+   * It should have an
+   * "id" property that uniquely identifies the product.
+   * @returns The addProduct function returns a boolean value. 
+   * It returns true if the product was
+   * successfully added to the products array, 
+   * and false if the product already exists in the array.
+   */
   addProduct(product) {
     if (!this.findProductById(product.id)) {
       this.products.push(product);
@@ -16,4 +37,43 @@ export class Catalogue {
     }
     return false;
   }
+
+  /**
+   * The function removes a product from an array of 
+   * products based on its ID and returns the removed
+   * product.
+   * @param id - The "id" parameter is the 
+   * unique identifier of the product that needs to be removed.
+   * @returns The removed product is being returned.
+   */
+  removeProductById(id) {
+    const removedProduct = this.findProductById(id);
+    if (removedProduct) {
+      this.products = this.products.filter(
+        (product) => product.id !== id // ***********
+      );
+    }
+    return removedProduct;
+  }
+
+
+
+  /**
+   * The function removes a product from an array of 
+   * products based on its ID and returns the removed
+   * product.
+   * @param id - The "id" parameter 
+   * is the unique identifier of the product that needs to be removed.
+   * @returns The removed product is being returned.
+   */
+  removeProductById(id) {
+    const removedProduct = this.findProductById(id);
+    if (removedProduct) {
+      this.products = this.products.filter(
+        (product) => product.id !== id // ***********
+      );
+    }
+    return removedProduct;
+  }
+
 }
