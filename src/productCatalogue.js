@@ -116,6 +116,32 @@ export class Catalogue {
     return result;
   }
 
+  /**
+   * The function `batchAddProducts` adds 
+   * valid products from a batch to a collection and returns the
+   * number of products added.
+   * @param batch - The `batch` parameter 
+   * is an object that contains information about a batch of
+   * products. It has a property called `products`, 
+   * which is an array of product objects. Each product
+   * object has properties such as `id` (unique identifier for the product) and `quantityInStock` (the
+   * quantity of
+   * @returns the number of valid additions that were successfully added to the product inventory.
+   */
+  batchAddProducts(batch) {
+    const invalidAdditions = batch.products.filter(
+      (product) => this.findProductById(product.id) !== undefined
+    );
+    if (invalidAdditions.length > 0 ) {
+      throw new Error('Bad Batch')
+    }
+    const validAdditions = batch.products.filter(
+      (product) => product.quantityInStock > 0
+    );
+    validAdditions.forEach( (p) => this.addProduct(p) );
+    return validAdditions.length;
+  }
+
 
 
 }
