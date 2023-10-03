@@ -86,17 +86,36 @@ export class Catalogue {
   * IDs that need to be reordered.
   * @returns an object with two properties: "type" and "productIds".
   */
+  // checkReorders() {
+  //   const result = { type: "Reorder", productIds: [] };
+  //   this.products.forEach( (p) => {
+  //     if (p.quantityInStock <= p.reorderLevel) {
+  //       result.productIds.push(p.id);
+  //     }
+  //   });
+  //   return result;
+  // }
+
+ /**
+  * The function "checkReorders" returns an object containing 
+  * the type "Reorder" and an array of
+  * product IDs for products that need 
+  * to be reordered based on their quantity in stock and reorder
+  * level.
+  * @returns The function `checkReorders()` 
+  * returns an object with two properties: `type` and
+  * `productIds`. The `type` property is 
+  * set to the string value "Reorder", and the `productIds`
+  * property is an array of product IDs.
+  */
   checkReorders() {
     const result = { type: "Reorder", productIds: [] };
-    this.products.forEach( (p) => {
-      if (p.quantityInStock <= p.reorderLevel) {
-        result.productIds.push(p.id);
-      }
-    });
+    result.productIds = this.products
+      .filter((p) => p.quantityInStock <= p.reorderLevel)
+      .map((p) => p.id);
     return result;
   }
 
 
 
-  
 }
